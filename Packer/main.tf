@@ -22,13 +22,13 @@ output "image_id" {
 # Create a Resource Group for the new Virtual Machine.
 resource "azurerm_resource_group" "main" {
   name     = "RaghuTFResourceGroupAzureDevops"
-  location = "eastus"
+  location = "West Europe"
 }
 # Create virtual network
 resource "azurerm_virtual_network" "vnet" {
     name                = "RG-Terraform-vnet"
     address_space       = ["10.0.0.0/16"]
-    location            = "eastus"
+    location            = "West Europe"
     resource_group_name = "${azurerm_resource_group.main.name}"
 }
 
@@ -81,7 +81,7 @@ resource "azurerm_virtual_machine" "vm" {
   location                         = "${azurerm_resource_group.main.location}"
   resource_group_name              = "${azurerm_resource_group.main.name}"
   network_interface_ids            = ["${azurerm_network_interface.main.id}"]
-  vm_size                          = "Standard_DS12_v2"
+  vm_size                          = "Standard_A2"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
 
