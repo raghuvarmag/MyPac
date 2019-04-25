@@ -8,12 +8,6 @@ provider "azurerm" {
 
 }
 
-# Create a new resource group
-resource "azurerm_resource_group" "rg" {
-    name     = "RaghuTFResourceGroupAzureDevops"
-    location = "eastus"
-}
-
 # Locate the existing custom/golden image
 data "azurerm_image" "search" {
   name                = "app10SImage-201904250724"
@@ -27,7 +21,7 @@ output "image_id" {
 
 # Create a Resource Group for the new Virtual Machine.
 resource "azurerm_resource_group" "main" {
-  name     = "RaghuTFResourceGroup1"
+  name     = "RaghuTFResourceGroupAzureDevops"
   location = "eastus"
 }
 # Create virtual network
@@ -35,7 +29,7 @@ resource "azurerm_virtual_network" "vnet" {
     name                = "RG-Terraform-vnet"
     address_space       = ["10.0.0.0/16"]
     location            = "eastus"
-    resource_group_name = "${azurerm_resource_group.rg.name}"
+    resource_group_name = "${azurerm_resource_group.main.name}"
 }
 
 # Create a Subnet within the Virtual Network
