@@ -10,25 +10,9 @@ provider "azurerm" {
 
 # Create a new resource group
 resource "azurerm_resource_group" "rg" {
-    name     = "RaghuTFResourceGroupOld"
+    name     = "RaghuTFResourceGroupAzureDevops"
     location = "eastus"
 }
-
-# Create a resource group
-resource "azurerm_resource_group" "rgvar" {
-    name     = "${var.prefix}TFRGVar"
-    location = "${var.location}"
-    tags     = "${var.tags}"
-}
-
-# Create a new resource group
-resource "azurerm_resource_group" "rg1" {
-    name     = "RaghuTFResourceGroup1"
-    location = "eastus"
-}
-#module "mymodule" {
- #    source = "libs/"
-#}
 
 # Locate the existing custom/golden image
 data "azurerm_image" "search" {
@@ -37,7 +21,7 @@ data "azurerm_image" "search" {
 }
 
 output "image_id" {
-  value = "/subscriptions/4027ce90-56f7-474c-a0fd-2ad77225d74c/resourceGroups/RaghuTFResourceGroupOld/providers/Microsoft.Compute/images/myPackerImage"
+  value = "/subscriptions/4027ce90-56f7-474c-a0fd-2ad77225d74c/resourceGroups/RaghuTFResourceGroup1/providers/Microsoft.Compute/images/app10SImage-201904250724"
 }
 
 
