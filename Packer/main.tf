@@ -43,7 +43,7 @@ output "image_id" {
 
 # Create a Resource Group for the new Virtual Machine.
 resource "azurerm_resource_group" "main" {
-  name     = "RaghuTFResourceGroupOld"
+  name     = "RaghuTFResourceGroup1"
   location = "eastus"
 }
 # Create virtual network
