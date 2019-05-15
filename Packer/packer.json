@@ -32,35 +32,5 @@
             "vm_size": "Standard_A2",
             "async_resourcegroup_delete":true
         }
-    ],
-    "provisioners": [
-        {
-            "type": "powershell",
-            "inline": [
-                "WINRM QuickConfig -q",
-                "Install-PackageProvider Nuget -ForceBootstrap -Force",
-                "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted"
-            ]
-        },
-        {
-            "type": "dsc",
-            "manifest_file": "DSCConfiguration.ps1",
-            "configuration_name": "webConfiguration",
-            "install_package_management": true,
-            "working_dir": "{{user `WorkingDirectory`}}",
-            "install_modules": {
-                "xPSDesiredStateConfiguration": "6.4.0.0"
-            },
-            "configuration_params": {
-                "-PackageLocation": "{{user `PackageLocation`}}"
-            }
-        },
-        {
-            "type": "powershell",
-            "inline": [
-                "if( Test-Path $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml -Force}",
-                "& $Env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /shutdown /quiet"
-            ]
-        }
     ]
 }
